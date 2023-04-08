@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,33 +11,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          FloatingActionButton.extended(onPressed: () {}, label: Text("Next")),
-      body: Center(
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Container(
-            width: 290,
-            height: 260,
-            child: Icon(Icons.apple),
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(40),
-            ),
+          backgroundColor: Colors.black,
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  "Welcome",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Spacer(
+                flex: 2,
+              ),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(12)),
+                  height: 400,
+                  width: 400,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          "Note : this app does nothin",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                              "jfklsajfdfahklfhdsjlfhaljkhfdsaljfk\njdasldjsalkdskajdsa\njdksakldsjakdsajdsajd;sa\ndljskadlskajdlsadjksdakjds"),
+                          TextButton(onPressed: () {}, child: Text("press me")),
+                          ElevatedButton(
+                              onPressed: () {}, child: Text("press me")),
+                          OutlinedButton(
+                              onPressed: () {}, child: Text("press me"))
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Spacer(
+                flex: 2,
+              ),
+            ],
           ),
-          Text("Shop everyThing\n just on tap",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 21,
-                  fontWeight: FontWeight.w600)),
-          Text(
-            "Hello world Hello world Hello world Hello world",
-            style: TextStyle(color: Colors.grey, fontSize: 14),
-          )
-        ]),
-      ),
-    ));
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton:
+              FloatingActionButton(onPressed: () {}, child: Icon(Icons.check)),
+        ));
   }
 }
