@@ -1,10 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_course/view/component/grey_button.dart';
+import 'package:flutter_course/view/component/snackbar.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter_course/DB/storage.dart';
 import 'package:flutter_course/view/resources/color.dart';
 import 'package:flutter_course/view/resources/text.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -63,38 +70,43 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+final pages = [
+  Container(
+    color: Colors.red,
+  ),
+  Container(
+    color: Colors.blue,
+  ),
+  Container(
+    color: Colors.green,
+  ),
+];
+
 class _MyHomePageState extends State<MyHomePage> {
   // int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: ReorderableListView(children: [
-          for(int i = 0 ; i<4;i++)
-        Dismissible(key: GlobalKey(),background: Container(color: Colors.red),child: ListTile(key: ValueKey(i),title: Text(mylist2[i]),))
-        ],
-
-           onReorder: (oldIndex, newIndex) {
-
-            order(oldIndex,newIndex);
-          
-        },)
-        );
-  }
-  
-  void order(int oldIndex,int newIndex){
-    setState(() {
-
-      if(oldIndex<newIndex){
-        newIndex--;
-      }
-     
-
-
-       final tile = mylist2.removeAt(oldIndex);
-       mylist2.insert(newIndex, tile);
-
-    });
+        backgroundColor: Colors.white,
+        body: Center(
+          child: TextButton(
+              child: Text("show snackbar"),
+              onPressed: () {
+              showModalBottomSheet(context: context, builder:(context) => Container(color: Colors.grey,height: 208,child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: TextField(decoration: InputDecoration(border: OutlineInputBorder())),
+                  ),GreyButton(titleOfTheButton: 'Create Group',methodology: (){},)
+                ],
+              ),));
+              
+              //  Scaffold.of(context).showBottomSheet((context) => Container(color: Colors.grey,height: 400,));
+              // Snackbars().MySnackBar(context);
+              // showDatePicker(context: context, initialDate: DateTime(2006), firstDate: DateTime(2004), lastDate: DateTime(2010));
+              }),
+        ));
   }
 }
+
